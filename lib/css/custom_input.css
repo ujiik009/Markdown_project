@@ -1,0 +1,64 @@
+/* 
+    Document   : custom_input
+    Created on : Oct 12, 2016, 11:22:58 AM
+    Author     : apirat
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+    
+}
+#fullpage{
+    cursor: pointer;
+
+}
+#fullpage:hover{
+    color: #FFFFFF;
+    background-color: #212d37;
+    border-radius: 5px;
+}
+#content-modal-html , #content-modal-markdown{
+    width: 100%;
+    min-height: 500px;
+}
+#doc_name{
+    display: none;
+}
+#iframe {
+        display: none;
+    }
+body{
+    background-color: #e3e8ef;
+}
+.input_and_preview{
+    height: auto;
+    width: 100%;
+    min-height: 520px;
+    max-height:520px;
+    overflow: scroll;
+}
+.preview{
+    background-color: #FFFFFF;
+    padding-left: 5px;
+}
+.nav_input_and_preview{
+    height: 40px;
+    padding: 10px;
+    color: #bac7db;
+    border-radius:3px;
+    background-color: #ffe1a6;
+}
+#navbar_top{
+    background-color: #212d37;
+    color: #e3e8ef;
+    
+}
+
+

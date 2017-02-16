@@ -1,0 +1,421 @@
+<p><img src="https://raw.githubusercontent.com/showdownjs/logo/master/dist/logo.readme.png" alt="Showdown" /></p>
+
+<p><a href="https://travis-ci.org/showdownjs/showdown"><img src="https://travis-ci.org/showdownjs/showdown.svg?branch=master" alt="Build Status" /></a> <a href="http://badge.fury.io/js/showdown"><img src="https://badge.fury.io/js/showdown.svg" alt="npm version" /></a> <a href="http://badge.fury.io/bo/showdown"><img src="https://badge.fury.io/bo/showdown.svg" alt="Bower version" /></a> <a href="https://gitter.im/showdownjs/showdown?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/showdownjs/showdown" /></a></p>
+
+<hr />
+
+<p>Showdown is a Javascript Markdown to HTML converter, based on the original works by John Gruber. Showdown can be used client side (in the browser) or server side (with NodeJs).</p>
+
+<h2 id="livedemo">Live DEMO</h2>
+
+<p>Check a live Demo here http://showdownjs.github.io/demo/</p>
+
+<h2 id="whousesshowdownorafork">Who uses Showdown (or a fork)</h2>
+
+<ul>
+<li><a href="https://github.com/GoogleCloudPlatform">GoogleCloudPlatform</a></li>
+
+<li><a href="https://ghost.org/">Ghost</a></li>
+
+<li><a href="https://www.meteor.com/">Meteor</a></li>
+
+<li><a href="http://stackexchange.com/">Stackexchange</a> - forked as <a href="https://code.google.com/p/pagedown/">PageDown</a></li>
+
+<li><a href="https://github.com/Vertafore/docular">docular</a></li>
+
+<li><a href="https://www.npmjs.com/browse/depended/showdown">and some others...</a></li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+
+<h3 id="downloadtarball">Download tarball</h3>
+
+<p>You can download the latest release tarball directly from <a href="https://github.com/showdownjs/showdown/releases">releases</a></p>
+
+<h3 id="bower">Bower</h3>
+
+<pre><code>bower install showdown
+</code></pre>
+
+<h3 id="npmserverside">npm (server-side)</h3>
+
+<pre><code>npm install showdown
+</code></pre>
+
+<h3 id="cdn">CDN</h3>
+
+<p>You can also use one of several CDNs available: </p>
+
+<ul>
+<li><p>github CDN</p>
+
+<pre><code>https://cdn.rawgit.com/showdownjs/showdown/&lt;version tag&gt;/dist/showdown.min.js
+</code></pre></li>
+
+<li><p>cdnjs</p>
+
+<pre><code>https://cdnjs.cloudflare.com/ajax/libs/showdown/&lt;version tag&gt;/showdown.min.js
+</code></pre></li>
+</ul>
+
+<h2 id="browsercompatibility">Browser Compatibility</h2>
+
+<p>Showdown has been tested successfully with:</p>
+
+<ul>
+<li>Firefox 1.5 and 2.0</li>
+
+<li>Chrome 12.0</li>
+
+<li>Internet Explorer 6 and 7</li>
+
+<li>Safari 2.0.4</li>
+
+<li>Opera 8.54 and 9.10</li>
+
+<li>Netscape 8.1.2</li>
+
+<li>Konqueror 3.5.4</li>
+</ul>
+
+<p>In theory, Showdown will work in any browser that supports ECMA 262 3rd Edition (JavaScript 1.5).  The converter itself might even work in things that aren't web browsers, like Acrobat.  No promises.</p>
+
+<h2 id="nodecompatibility">Node compatibility</h2>
+
+<p>Showdown has been tested with node 0.8 and 0.10. However, it should work with previous versions, such as node 0.6.</p>
+
+<h2 id="legacyversion">Legacy version</h2>
+
+<p>If you're looking for showdown v&lt;1.0.0, you can find it in the <a href="https://github.com/showdownjs/showdown/tree/legacy"><strong>legacy branch</strong></a>.</p>
+
+<h2 id="changelog">Changelog</h2>
+
+<p>You can check the full <a href="https://github.com/showdownjs/showdown/blob/master/CHANGELOG.md">changelog</a></p>
+
+<h2 id="extendeddocumentation">Extended documentation</h2>
+
+<p>Check our <a href="https://github.com/showdownjs/showdown/wiki">wiki pages</a> for examples and a more in-depth documentation.</p>
+
+<h2 id="quickexample">Quick Example</h2>
+
+<h3 id="node">Node</h3>
+
+<pre><code class="js language-js">var showdown  = require('showdown'),
+    converter = new showdown.Converter(),
+    text      = '#hello, markdown!',
+    html      = converter.makeHtml(text);
+</code></pre>
+
+<h3 id="browser">Browser</h3>
+
+<pre><code class="js language-js">var converter = new showdown.Converter(),
+    text      = '#hello, markdown!',
+    html      = converter.makeHtml(text);
+</code></pre>
+
+<h3 id="output">Output</h3>
+
+<p>Both examples should output...</p>
+
+<pre><code>&lt;h1 id="hellomarkdown"&gt;hello, markdown!&lt;/h1&gt;
+</code></pre>
+
+<h2 id="options">Options</h2>
+
+<p>You can change some of showdown's default behavior through options. </p>
+
+<h3 id="settingoptions">Setting options</h3>
+
+<p>Options can be set:</p>
+
+<h4 id="globally">Globally</h4>
+
+<p>Setting a "global" option affects all instances of showdown</p>
+
+<pre><code class="js language-js">showdown.setOption('optionKey', 'value');
+</code></pre>
+
+<h4 id="locally">Locally</h4>
+
+<p>Setting a "local" option only affects the specified Converter object. 
+Local options can be set:</p>
+
+<ul>
+<li><p><strong>through the constructor</strong></p>
+
+<pre><code class="js language-js">var converter = new showdown.Converter({optionKey: 'value'});
+</code></pre></li>
+
+<li><p><strong>through the setOption() method</strong>
+<code>js
+var converter = new showdown.Converter();
+converter.setOption('optionKey', 'value');
+</code></p></li>
+</ul>
+
+<h3 id="gettinganoption">Getting an option</h3>
+
+<p>Showdown provides 2 methods (both local and global) to retrieve previous set options.</p>
+
+<h4 id="getoption">getOption()</h4>
+
+<pre><code class="js language-js">// Global
+var myOption = showdown.getOption('optionKey');
+
+//Local
+var myOption = converter.getOption('optionKey');
+</code></pre>
+
+<h4 id="getoptions">getOptions()</h4>
+
+<pre><code class="js language-js">// Global
+var showdownGlobalOptions = showdown.getOptions();
+
+//Local
+var thisConverterSpecificOptions = converter.getOptions();
+</code></pre>
+
+<h3 id="retrievethedefaultoptions">Retrieve the default options</h3>
+
+<p>You can get showdown's default options with:</p>
+
+<pre><code class="js language-js">var defaultOptions = showdown.getDefaultOptions();
+</code></pre>
+
+<h3 id="validoptions">Valid Options</h3>
+
+<ul>
+<li><p><strong>omitExtraWLInCodeBlocks</strong>: (boolean) [default false] Omit the trailing newline in a code block. Ex:</p>
+
+<p>This:</p>
+
+<pre><code class="html language-html"><code><pre>var foo = 'bar';
+    </pre></code>
+</code></pre>
+
+<p>Becomes this:</p>
+
+<pre><code class="html language-html"><code><pre>var foo = 'bar';</pre></code>
+</code></pre></li>
+
+<li><p><strong>noHeaderId</strong>: (boolean) [default false] Disable the automatic generation of header ids. Setting to true overrides <strong>prefixHeaderId</strong></p></li>
+
+<li><p><strong>prefixHeaderId</strong>: (string/boolean) [default false] Add a prefix to the generated header ids. Passing a string will prefix that string to the header id. Setting to <code>true</code> will add a generic 'section' prefix.</p></li>
+
+<li><p><strong>parseImgDimensions</strong>: (boolean) [default false] Enable support for setting image dimensions from within markdown syntax.
+Examples:</p>
+
+<pre><code>![foo](foo.jpg =100x80)     simple, assumes units are in px
+![bar](bar.jpg =100x*)      sets the height to "auto"
+![baz](baz.jpg =80%x5em)  Image with width of 80% and height of 5em
+</code></pre></li>
+
+<li><p><strong>headerLevelStart</strong>: (integer) [default 1] Set the header starting level. For instance, setting this to 3 means that</p>
+
+<pre><code class="md language-md"># foo
+</code></pre>
+
+<p>will be parsed as </p>
+
+<pre><code class="html language-html">&lt;h3&gt;foo&lt;/h3&gt;
+</code></pre></li>
+
+<li><p><strong>simplifiedAutoLink</strong>: (boolean) [default false] Turning this on will enable GFM autolink style. This means that </p>
+
+<pre><code class="md language-md">some text www.google.com
+</code></pre>
+
+<p>will be parsed as </p>
+
+<pre><code class="` language-`">&lt;p&gt;some text &lt;a href="www.google.com"&gt;www.google.com&lt;/a&gt;
+</code></pre></li>
+
+<li><p><strong>literalMidWordUnderscores</strong>: (boolean) [default false] Turning this on will stop showdown from interpreting underscores in the middle of words as <code>&lt;em&gt;</code> and <code>&lt;strong&gt;</code> and instead treat them as literal underscores. </p>
+
+<p>Example:</p>
+
+<pre><code class="md language-md">some text with__underscores__in middle
+</code></pre>
+
+<p>will be parsed as
+```html</p></li>
+</ul>
+
+   <p>some text with__underscores__in middle</p>
+
+<p>```</p>
+
+<ul>
+<li><p><strong>strikethrough</strong>: (boolean) [default false] Enable support for strikethrough syntax.
+<code>~~strikethrough~~</code> as <code>&lt;del&gt;strikethrough&lt;/del&gt;</code></p></li>
+
+<li><p><strong>tables</strong>: (boolean) [default false] Enable support for tables syntax. Example:</p>
+
+<p>```md</p></li>
+</ul>
+
+<table border="1">
+<thead>
+<tr>
+<th id="h1" style="text-align:left;"> h1    </th>
+<th id="h2" style="text-align:left;">    h2   </th>
+<th id="h3" style="text-align:left;">      h3 </th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align:left;"><p>100   </p></td>
+<td style="text-align:left;"><p>[a][1]  </p></td>
+<td style="text-align:left;"><p>![b][2] </p></td>
+</tr>
+
+<tr>
+<td style="text-align:left;"><p><em>foo</em> </p></td>
+<td style="text-align:left;"><p><strong>bar</strong> </p></td>
+<td style="text-align:left;"><p>~~baz~~ </p></td>
+</tr>
+
+</tbody>
+</table>
+
+<p>See the wiki for more info</p>
+
+<ul>
+<li><p><strong>tablesHeaderId</strong>: (boolean) [default false] If enabled adds an id property to table headers tags.</p></li>
+
+<li><p><strong>ghCodeBlocks</strong>: (boolean) [default true] Enable support for GFM code block style.</p></li>
+
+<li><p><strong>tasklists</strong>:(boolean) [default false] Enable support for GFM takslists. Example:</p>
+
+<pre><code class="md language-md">- [x] This task is done
+- [ ] This is still pending
+</code></pre></li>
+
+<li><p><strong>smoothLivePreview</strong>: (boolean) [default false] Prevents weird effects in live previews due to incomplete input</p></li>
+
+<li><p><strong>smartIndentationFix</strong>: (boolean) [default false] Tries to smartly fix indentation problems related to es6 template strings in the midst of indented code.</p></li>
+</ul>
+
+<h2 id="clitool">CLI Tool</h2>
+
+<p>Showdown also comes bundled with a Command Line Interface tool. You can check the <a href="https://github.com/showdownjs/showdown/wiki/CLI-tool">CLI wiki page</a> for more info</p>
+
+<h2 id="integrationwithangularjs">Integration with AngularJS</h2>
+
+<p>ShowdownJS project also provides seamlessly integration with AngularJS via a "plugin".
+Please visit https://github.com/showdownjs/ngShowdown for more information.</p>
+
+<h2 id="integrationwithtypescript">Integration with TypeScript</h2>
+
+<p>If you're using TypeScript you maybe want to use the types from <a href="https://github.com/borisyankov/DefinitelyTyped/tree/master/showdown">DefinitelyTyped</a></p>
+
+<h2 id="integrationwithsystemjsjspm">Integration with SystemJS/JSPM</h2>
+
+<p>Integration with SystemJS can be obtained via the third party <a href="https://github.com/guybedford/system-md">"system-md" plugin</a>.</p>
+
+<h2 id="xssvulnerability">XSS vulnerability</h2>
+
+<p>Showdown doesn't sanitize the input. This is by design since markdown relies on it to allow certain features to be correctly parsed into HTML.
+This, however, means XSS injection is quite possible.</p>
+
+<p>Please refer to the wiki article <a href="https://github.com/showdownjs/showdown/wiki/Markdown" title="s-XSS-Vulnerability-(and-how-to-mitigate-it">Markdown's XSS Vulnerability (and how to mitigate it)</a>
+for more information.</p>
+
+<h2 id="extensions">Extensions</h2>
+
+<p>Showdown allows additional functionality to be loaded via extensions. (you can find a list of known showdown extensions <a href="https://github.com/showdownjs/showdown/wiki/extensions">here</a>)</p>
+
+<h3 id="clientsideextensionusage">Client-side Extension Usage</h3>
+
+<pre><code class="js language-js">&lt;script src="showdown.js" /&gt;
+&lt;script src="twitter-extension.js" /&gt;
+
+var converter = new showdown.Converter({ extensions: 'twitter' });
+</code></pre>
+
+<h3 id="serversideextensionusage">Server-side Extension Usage</h3>
+
+<pre><code class="js language-js">var showdown    = require('showdown'),
+    myExtension = require('myExtension'),
+    converter = new showdown.Converter({ extensions: ['myExtension'] });
+</code></pre>
+
+<h2 id="tests">Tests</h2>
+
+<p>A suite of tests is available which require node.js.  Once node is installed, run the following command from the project root to install the dependencies:</p>
+
+<pre><code>npm install
+</code></pre>
+
+<p>Once installed the tests can be run from the project root using:</p>
+
+<pre><code>npm test
+</code></pre>
+
+<p>New test cases can easily be added.  Create a markdown file (ending in <code>.md</code>) which contains the markdown to test.  Create a <code>.html</code> file of the exact same name.  It will automatically be tested when the tests are executed with <code>mocha</code>.</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>If you wish to contribute please read the following quick guide.</p>
+
+<h3 id="wantafeature">Want a Feature?</h3>
+
+<p>You can request a new feature by submitting an issue. If you would like to implement a new feature feel free to issue a
+Pull Request.</p>
+
+<h3 id="pullrequestsprs">Pull requests (PRs)</h3>
+
+<p>PRs are awesome. However, before you submit your pull request consider the following guidelines:</p>
+
+<ul>
+<li><p>Search GitHub for an open or closed Pull Request that relates to your submission. You don't want to duplicate effort.</p></li>
+
+<li><p>When issuing PRs that change code, make your changes in a new git branch based on master:</p>
+
+<pre><code class="bash language-bash">git checkout -b my-fix-branch master
+</code></pre></li>
+
+<li><p>Documentation (i.e: README.md) changes can be made directly against master.</p></li>
+
+<li><p>Run the full test suite before submitting and make sure all tests pass (obviously =P).</p></li>
+
+<li><p>Try to follow our <a href="https://github.com/showdownjs/code-style/blob/master/README.md"><strong>coding style rules</strong></a>.
+Breaking them prevents the PR to pass the tests.</p></li>
+
+<li><p>Refrain from fixing multiple issues in the same pull request. It's preferable to open multiple small PRs instead of one
+hard to review big one.</p></li>
+
+<li><p>If the PR introduces a new feature or fixes an issue, please add the appropriate test case.</p></li>
+
+<li><p>We use commit notes to generate the changelog. It's extremely helpful if your commit messages adhere to the
+<a href="https://github.com/showdownjs/code-style/blob/master/README.md#commit-message-convention"><strong>AngularJS Git Commit Guidelines</strong></a>.</p></li>
+
+<li><p>If we suggest changes then:</p>
+
+<ul>
+<li>Make the required updates.</li>
+
+<li>Re-run the Angular test suite to ensure tests are still passing.</li>
+
+<li>Rebase your branch and force push to your GitHub repository (this will update your Pull Request):</li></ul>
+
+<pre><code class="bash language-bash">git rebase master -i
+git push origin my-fix-branch -f
+</code></pre></li>
+
+<li><p>After your pull request is merged, you can safely delete your branch.</p></li>
+</ul>
+
+<p>If you have time to contribute to this project, we feel obliged that you get credit for it.
+These rules enable us to review your PR faster and will give you appropriate credit in your GitHub profile.
+We thank you in advance for your contribution!</p>
+
+<h3 id="joiningtheteam">Joining the team</h3>
+
+<p>We're looking for members to help maintaining Showdown.
+Please see <a href="https://github.com/showdownjs/showdown/issues/114">this issue</a> to express interest or comment on this note.</p>
+
+<h2 id="credits">Credits</h2>
+
+<p>Full credit list at https://github.com/showdownjs/showdown/blob/master/CREDITS.md</p>
